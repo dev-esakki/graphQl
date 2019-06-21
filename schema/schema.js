@@ -16,7 +16,7 @@ var books = [
 ]
 
 var authors = [
-    { name: 'author 1', book: 'book 1', id: '1', age: 25},
+    { name: 'author e', book: 'book 1', id: '1', age: 25},
     { name: 'author 2', book: 'book 2', id: '2', age: 35},
     { name: 'author 3', book: 'book 3', id: '3', age: 40},
 ]
@@ -110,6 +110,25 @@ const mutation = new GraphQLObjectType({
                     if(pushedAuthor)
                         return authorObj;
                 } 
+            }
+        },
+        addBook: {
+            type: BookType,
+            args: {            
+                id: {type: GraphQLID},
+                name: {type: GraphQLString},
+                genre:{type: GraphQLString},
+                authorId: {type: GraphQLID},
+                price: {type: GraphQLString}  
+            },
+            resolve(parent, args) {
+                let bookExist = _.find(books, {id: args.id})
+                if(!bookExist) {
+                    let pushBook = { id: args.id, name: args.name, genre: args.genere, authorId: args.authorId, price: args.price }
+                    let pushedBook = books.push(pushBook)
+                    if(pushedBook)
+                        return pushBook
+                }
             }
         }
     }
