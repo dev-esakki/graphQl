@@ -1,6 +1,6 @@
 const functions = require('./function')
 
-
+//snap shot test will be available un react u can update npm test -- -u
 test('toBe equal', () => {
     expect(functions.add(2,2)).toBe(4)
 })
