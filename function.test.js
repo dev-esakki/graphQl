@@ -1,6 +1,23 @@
 const functions = require('./function')
 
 //snap shot test will be available un react u can update npm test -- -u
+
+test('toBe Called', () => {    
+    //const fn = jest.fn((x,y) => x+ y)
+    const fn = jest.fn(functions.add)
+    expect(fn(2,3)).toBe(5)
+    expect(fn).toHaveBeenCalled()
+    expect(fn).toHaveBeenCalledTimes(1)
+    expect(fn).toHaveBeenCalledWith(2,3)
+    expect(fn).toBeCalled()
+    //expect(fn).not.toBeCalled()
+    expect(fn).toHaveBeenLastCalledWith(2,3)
+    expect(fn).toHaveReturnedTimes(1)
+    expect(fn).toHaveReturnedWith(5)
+    expect(fn).toHaveLastReturnedWith(5)
+ 
+})
+
 test('toBe equal', () => {
     expect(functions.add(2,2)).toBe(4)
 })
